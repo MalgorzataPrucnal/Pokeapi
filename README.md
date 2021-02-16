@@ -28,15 +28,21 @@ Do stylowania użyłem tailwind.css natomiast śmiało można dodawać własne p
 ## Punktacja
 
 Poprawny routing - 2 pkt
+
 Pobieranie listy pokemnów i jej wyświetlanie - 2 pkt
+
 Obsługa stanów pośrednich - 1 pkt
+
 Dodawanie do Ulubionych - 1 pkt
+
 Wyświetlenie z localStorage danych na stronie Ulubionych - 2 pkt
+
 Widok szczegółowy pokemona - 3 pkt (+ dodawanie do ulubionych)
 
 ### Extra
 
 PREV i NEXT buttons + współpraca ze stronnicowanym API - 2 pkt
+
 Nałożenie limitu 6 pokemonów w sekcji Ulubione i wyrzucanie pierwszego dodanego, gdy dołożymy ponad limit - 2 pkt
 
 ## Termin 10.03.2021 do godziny 23:59
