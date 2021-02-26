@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 export function Pokemons({ id, name, url }) {
   const [pokemons, setPokemons] = useState([]);
   const [nextUrl, setNextUrl] = useState("");
-  const [prevUrl, prevNextUrl] = useState("");
+  const [prevUrl, setPrevUrl] = useState("");
   const [loading, setLoading] = useState(true);
 
   const fetchPokemons = () => {
@@ -16,9 +16,13 @@ export function Pokemons({ id, name, url }) {
       .then((data) => {
         const response = data.results;
         setPokemons(response);
-        console.log(response);
+        console.log(data.next);
+        setNextUrl(data.next);
+        setPrevUrl(data.previous)
         setLoading(false);
-      });
+
+      })
+      .catch(error=> console.log('error'));
   };
 
   useEffect(() => {
@@ -31,11 +35,11 @@ export function Pokemons({ id, name, url }) {
       <p className="text-white py-6 text-center">
         Here will be list of pokemons from pokeapi
       </p>
-      {loading && <p>Loading ...</p>}
+      {loading && <p className="text-white py-6 text-center">Loading ...</p>}
       <ol className="poke-font text-white grid grid-cols-2 grid-flow-row-dense gap-1">
         {pokemons.map((pokemon, index) => (
           <li
-            key={pokemon - index}
+            key={index}
             className={`hover:bg-red-700 cursor-pointer ${
               index < 10 ? "col-start-1" : "col-start-2"
             }`}
@@ -46,7 +50,7 @@ export function Pokemons({ id, name, url }) {
         ))}
       </ol>
 
-      <ol className="text-white list-decimal">
+      {/* <ol className="text-white list-decimal">
         <p className="font-bold">What you need to do</p>
         <li>
           Call pokeapi inside useEffect (remember to not cause infinite loop
@@ -83,8 +87,8 @@ export function Pokemons({ id, name, url }) {
           it in Favourite component. [Extra] Maximum of 6, meaning if I add 7th
           pokemon the first one gets removed from the localStorage
         </li>
-      </ol>
-      <p className="text-white py-2">
+      </ol> */}
+      {/* <p className="text-white py-2">
         Example of what I want to see here is something like this
       </p>
       <ol className="poke-font text-white grid grid-cols-2 grid-flow-row-dense gap-1">
@@ -98,7 +102,7 @@ export function Pokemons({ id, name, url }) {
             #{index + 1} - {pokemon.name}
           </li>
         ))}
-      </ol>
+      </ol> */}
     </Page>
   );
 }

@@ -4,18 +4,18 @@ import { Title } from '../../components/title'
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import {useState,useEffect} from 'react';
 
-
-
 export const Individual = (props) => {
-  console.log(props);
+  
   const [individualData, setIndividualData] = useState(null);
   let url = props.match.params.index;
+  const [state, setState] = useLocalStorage(url);
 
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${url}`)
       .then((r) => r.json())
       .then((data) => {
         setIndividualData(data);
+        
       });
   }, []);
 
@@ -26,13 +26,16 @@ export const Individual = (props) => {
   if (!individualData.name) {
     return <p>No pokemon</p>;
   }
-
+  
+  let save = () => {setState(individualData); console.log(individualData)};
+  
   return (
-    <div className="justify-items-center">
-    <Page>
-      <figure className="max-w-xs bg-gray-100 rounded-xl p-4 justify-items-center">
+    
+    <Page >
+      <div>
+      <figure className="max-w-xs bg-gray-100 rounded-xl p-4 object-none object-center">
         <img
-          className="w-32 h-32 rounded-full mx-auto"
+          className=" w-32 h-32 rounded-full mx-auto"
           src={individualData.sprites.front_default}
           alt="This is your pokemon"
           width="384"
@@ -49,7 +52,9 @@ export const Individual = (props) => {
           </figcaption>
         </div>
       </figure>
+      <button className="hover:bg-light-pink-200 hover:text-light-blue-800 group flex items-center rounded-md bg-pink-100 text-light-pink-600 text-sm font-medium px-4 py-2"  onClick={save}>Add to favourites</button>
+      </div>
     </Page>
-    </div>
+  
   );
 };

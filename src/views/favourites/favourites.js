@@ -26,16 +26,42 @@ const examplePokemon = {
   ],
 };
 
+
+
+let list = [];
 export const Favourites = () => {
+  // const [stateLocalStorage, setStateLocalStorage] = React.useState(() => {
+    let keys = Object.keys(localStorage);
+    let i = keys.length;
+    console.log(keys);
+    console.log(i);
+  
+ 
+
+
+    for(let z=0; z<2; z++){
+      let pokemon = JSON.parse(window.localStorage.getItem(keys[z]));
+      if (pokemon){
+        
+      list.push(<li key={`${pokemon.id}_fav`}>{pokemon.name}</li> );
+
+
+            }
+      else console.log("No pokemons");
+         }
+
+
+
+
   return (
     <Page>
       <Title>Favourites</Title>
-
       <p className="text-white py-6 text-center">
         Here will be list of saved pokemons from localStorage
       </p>
 
        <ol className="text-white list-decimal">
+         {list}
         <p className="font-bold">What you need to do</p>
         <li>
           Import hook `useLocalStorage` and use it to consume data from localStorage, it's fairly straightforward. Think of it as `useState`, in case of any problems don't hesitate to ask me for help
@@ -86,6 +112,7 @@ export const Favourites = () => {
     </Page>
   );
 }
+
 
 const PokemonProfile = ({number, name, types, avatar}) => {
 

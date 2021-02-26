@@ -27,13 +27,13 @@ function App() {
           <div>
             <nav>
               <ul className="flex poke-font justify-between">
-                <li className="mr-4">
+                <li key="1-link" className="mr-4">
                   <Link to="/">Home</Link>
                 </li>
-                <li className="mr-4">
+                <li key="2-link" className="mr-4">
                   <Link to="/pokemons">Pokemons</Link>
                 </li>
-                <li className="mr-4">
+                <li key="3-link" className="mr-4">
                   <Link to="/favourites">Favourites</Link>
                 </li>
               </ul>
