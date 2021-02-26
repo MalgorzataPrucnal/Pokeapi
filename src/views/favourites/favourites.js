@@ -36,7 +36,7 @@ export const Favourites = () => {
     console.log(keys);
     console.log(i);
   
- 
+
 
 
     for(let z=0; z<2; z++){
