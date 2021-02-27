@@ -1,18 +1,16 @@
-import React from 'react'
-import { Page } from '../../components/page'
-import { Title } from '../../components/title'
-import { useLocalStorage } from '../../hooks/useLocalStorage';
+import React from "react";
+import { Page } from "../../components/page";
+import { Title } from "../../components/title";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
+import placeholder from "../../assets/placeholder.png";
 
 const examplePokemon = {
   id: null,
-  name: "This is place for you favourite pokemon",
-  sprites:{
-    front_default: 
-    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/1.png",},
-    
-  types:"",
-};
+  name: "This is place for your favourite pokemon.",
+  avatar: placeholder,
 
+  types: "",
+};
 
 export const Favourites = () => {
   // const [stateLocalStorage, setStateLocalStorage] = React.useState(() => {
@@ -20,6 +18,11 @@ export const Favourites = () => {
   let i = keys.length;
   console.log(keys);
   console.log(i);
+
+  let message;
+  if (i === 0) {
+    message = "There is no pokemons on your favourites list.";
+  }
 
   //first
 
@@ -53,6 +56,7 @@ export const Favourites = () => {
   if (!pokemonSecond) {
     pokemonSecond = examplePokemon;
   }
+  console.log(pokemonSecond.name);
 
   let pokemonThird = examplePokemon;
   if (6 >= i > 0) {
@@ -115,6 +119,7 @@ export const Favourites = () => {
       <p className="text-white py-6 text-center">
         Here will be list of saved pokemons from localStorage
       </p>
+      <p> {message} </p>
 
       <ol className="text-white list-decimal">
         {/* {pokemonFirst.name} */}
@@ -171,26 +176,26 @@ export const Favourites = () => {
       </div>
     </Page>
   );
-}
+};
 
-
-const PokemonProfile = ({id, name, types, avatar}) => {
-
-return (
-  <figure className="max-w-xs bg-gray-100 rounded-xl p-4">
-    <img
-      className="w-32 h-32 rounded-full mx-auto"
-      src={avatar} 
-      alt="One of your favourite pokemons"
-      width="384"
-      height="512"
-    />
-    <div className="pt-4 text-center">
-      <figcaption className="font-medium">
-        <div className="text-cyan-600">#{id} {name}</div>
-        <div className="text-gray-500">{types}</div>
-      </figcaption>
-    </div>
-  </figure>
-);
-}
+const PokemonProfile = ({ id, name, types, avatar }) => {
+  return (
+    <figure className="max-w-xs bg-gray-100 rounded-xl p-4">
+      <img
+        className="w-32 h-32 rounded-full mx-auto"
+        src={avatar}
+        alt="One of your favourite pokemons"
+        width="384"
+        height="512"
+      />
+      <div className="pt-4 text-center">
+        <figcaption className="font-medium">
+          <div className="text-cyan-600">
+            #{id} {name}
+          </div>
+          <div className="text-gray-500">{types}</div>
+        </figcaption>
+      </div>
+    </figure>
+  );
+};

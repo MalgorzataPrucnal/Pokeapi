@@ -14,21 +14,50 @@ export function Pokemons({ id, name, url }) {
     fetch("https://pokeapi.co/api/v2/pokemon/")
       .then((r) => r.json())
       .then((data) => {
-        const response = data.results;
+        let response = data.results;
         setPokemons(response);
-        console.log(data.next);
+        console.log(response);
+        console.log("datanext" + data.next);
         setNextUrl(data.next);
-        setPrevUrl(data.previous)
+        setPrevUrl(data.previous);
         setLoading(false);
-
       })
-      .catch(error=> console.log('error'));
+      .catch((error) => console.log("error"));
   };
 
   useEffect(() => {
     fetchPokemons();
   }, []);
 
+  const next = () => {
+    setLoading(true);
+    fetch(nextUrl)
+    .then((resp) => resp.json())
+    .then((data) => {
+      let response = data.results;
+      setPokemons(response);
+     setNextUrl(data.next);
+    setPrevUrl(data.previous);
+    setLoading(false);
+  })
+};
+
+const prev = () => {
+  if (!prevUrl) {
+    return
+  }
+  setLoading(true);
+  fetch(prevUrl)
+  .then((resp) => resp.json())
+  .then((data) => {
+    let response = data.results;
+    setPokemons(response);
+   setNextUrl(data.next);
+  setPrevUrl(data.previous);
+  setLoading(false);
+})
+};
+  
   return (
     <Page>
       <Title>Pokemons list</Title>
@@ -103,6 +132,8 @@ export function Pokemons({ id, name, url }) {
           </li>
         ))}
       </ol> */}
+      <button onClick={prev}>Previous</button>
+      <button onClick={next}>Next</button>
     </Page>
   );
 }
