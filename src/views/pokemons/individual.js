@@ -8,7 +8,7 @@ export const Individual = (props) => {
   
   const [individualData, setIndividualData] = useState(null);
   let url = props.match.params.index;
-  const [state, setState] = useLocalStorage(url);
+  // const [state, setState] = useLocalStorage(url);
 
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${url}`)
@@ -27,7 +27,9 @@ export const Individual = (props) => {
     return <p>No pokemon</p>;
   }
   
-  let save = () => {setState(individualData); console.log(individualData)};
+let save = () => {window.localStorage.setItem(url, JSON.stringify({id: url, name: individualData.name, avatar: individualData.sprites.front_default, types: individualData.types.map(({ type }) => type.name).join(", ")}))}
+
+  // let save = () => {setState(individualData); console.log(individualData)};
   
   return (
     
