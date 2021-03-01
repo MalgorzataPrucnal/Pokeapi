@@ -8,7 +8,7 @@ const examplePokemon = {
   id: "",
   name: "This is place for your favourite pokemon.",
   sprites: {
-    back_default: placeholder,
+    front_default: placeholder,
   },
   types: [
     {
@@ -131,10 +131,12 @@ export const Favourites = () => {
   return (
     <Page>
       <Title>Favourites</Title>
-      <p className="text-white py-6 text-center">
+      {/* <p className="text-white py-6 text-center">
         Here will be list of saved pokemons from localStorage
+      </p> */}
+      <p className="text-white py-6 text-center">
+        {message}
       </p>
-      <p> {message} </p>
 
       {/* <ol className="text-white list-decimal">
         {/* {pokemonFirst.name} */}
@@ -155,37 +157,37 @@ export const Favourites = () => {
         <PokemonProfile
           name={pokemonFirst.name}
           types={pokemonFirst.types}
-          avatar={pokemonFirst.sprites.back_default}
+          avatar={pokemonFirst.sprites.front_default}
           id={pokemonFirst.id}
         />
         <PokemonProfile
           name={pokemonSecond.name}
           types={pokemonSecond.types}
-          avatar={pokemonSecond.sprites.back_default}
+          avatar={pokemonSecond.sprites.front_default}
           id={pokemonSecond.id}
         />
         <PokemonProfile
           name={pokemonThird.name}
           types={pokemonThird.types}
-          avatar={pokemonThird.sprites.back_default}
+          avatar={pokemonThird.sprites.front_default}
           id={pokemonThird.id}
         />
         <PokemonProfile
           name={pokemonFourth.name}
           types={pokemonFourth.types}
-          avatar={pokemonFourth.sprites.back_default}
+          avatar={pokemonFourth.sprites.front_default}
           id={pokemonFourth.id}
         />
         <PokemonProfile
           name={pokemonFifth.name}
           types={pokemonFifth.types}
-          avatar={pokemonFifth.sprites.back_default}
+          avatar={pokemonFifth.sprites.front_default}
           id={pokemonFifth.id}
         />
         <PokemonProfile
           name={pokemonSixth.name}
           types={pokemonSixth.types}
-          avatar={pokemonSixth.sprites.back_default}
+          avatar={pokemonSixth.sprites.front_default}
           id={pokemonSixth.id}
         />
       </div>
