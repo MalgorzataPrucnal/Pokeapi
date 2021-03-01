@@ -5,91 +5,44 @@ import { useLocalStorage } from "../../hooks/useLocalStorage";
 import placeholder from "../../assets/placeholder.png";
 
 const examplePokemon = {
-  id: "",
+  id: null,
   name: "This is place for your favourite pokemon.",
-  sprites: {
-    back_default: placeholder,
-  },
-  types: [
-    {
-      slot: 1,
-      type: {
-        name: "",
-        url: "https://pokeapi.co/api/v2/type/12/",
-      },
-    },
-    {
-      slot: 2,
-      type: {
-        name: "",
-        url: "https://pokeapi.co/api/v2/type/4/",
-      },
-    },
-  ],
+  avatar: placeholder,
+
+  types: "",
 };
 
-// const examplePokemon = {
-//   id: null,
-//   name: "This is place for your favourite pokemon.",
-//   avatar: placeholder,
-
-//   types: "",
-// };
-
 export const Favourites = () => {
-  const [state, setState] = useLocalStorage("pokemons");
+  // const [stateLocalStorage, setStateLocalStorage] = React.useState(() => {
+  let keys = Object.keys(localStorage);
+  let i = keys.length;
+  console.log(keys);
+  console.log(i);
 
-  let pokemonFirst = examplePokemon;
-  let pokemonSecond = examplePokemon;
-  let pokemonThird = examplePokemon;
-  let pokemonFourth = examplePokemon;
-  let pokemonFifth = examplePokemon;
-  let pokemonSixth = examplePokemon;
+  if (i > 6 ) {
+    keys.shift();
 
-  let filtered;
-  let i;
+  }
 
   let message;
-
-  const arrayOfPokemons = JSON.parse(window.localStorage.getItem("pokemons"));
-  if (
-    !arrayOfPokemons ||
-    arrayOfPokemons === null ||
-    arrayOfPokemons === undefined
-  ) {
+  if (i === 0) {
     message = "There is no pokemons on your favourites list.";
-  }
-  console.log(filtered);
-
-  if (arrayOfPokemons) {
-    i = arrayOfPokemons.length;
-
-    filtered = arrayOfPokemons.reduce((acc, current) => {
-      const doubled = acc.find((item) => item.id === current.id);
-      if (!doubled) {
-        return acc.concat([current]);
-      } else {
-        return acc;
-      }
-    }, []);
-  }
-
-  if (i > 6) {
-    filtered.shift();
   }
 
   //first
-  if (i > 0) {
-    pokemonFirst = filtered[0];
-  }
+
+  let pokemonFirst = examplePokemon;
+  
+    pokemonFirst = JSON.parse(window.localStorage.getItem(keys[0]));
+  
   if (!pokemonFirst) {
     pokemonFirst = examplePokemon;
   }
 
   //second
-  if (i > 1) {
-    pokemonSecond = filtered[1];
-  }
+
+  let pokemonSecond = examplePokemon;
+    pokemonSecond = JSON.parse(window.localStorage.getItem(keys[1]));
 
   if (!pokemonSecond) {
     pokemonSecond = examplePokemon;
@@ -97,32 +50,33 @@ export const Favourites = () => {
 
   console.log(pokemonSecond.name);
 
-  if (i > 2) {
-    pokemonThird = filtered[2];
-  }
-
-  if (!pokemonThird) {
+  let pokemonThird = examplePokemon;
+     pokemonThird = JSON.parse(window.localStorage.getItem(keys[2]));
+ 
+     if (!pokemonThird) {
     pokemonThird = examplePokemon;
   }
 
-  if (i > 3) {
-    pokemonFourth = filtered[3];
-  }
 
+  let pokemonFourth = examplePokemon;
+ 
+    pokemonFourth = JSON.parse(window.localStorage.getItem(keys[3]));
+ 
   if (!pokemonFourth) {
     pokemonFourth = examplePokemon;
   }
 
-  if (i > 4) {
-    pokemonFifth = filtered[4];
-  }
+  let pokemonFifth = examplePokemon;
+ 
+    pokemonFifth = JSON.parse(window.localStorage.getItem(keys[4]));
+
   if (!pokemonFifth) {
     pokemonFifth = examplePokemon;
   }
-
-  if (i > 5) {
-    pokemonSixth = filtered[5];
-  }
+  let pokemonSixth = examplePokemon;
+  
+    pokemonSixth = JSON.parse(window.localStorage.getItem(keys[5]));
+  
   if (!pokemonSixth) {
     pokemonSixth = examplePokemon;
   }
@@ -135,56 +89,56 @@ export const Favourites = () => {
       </p>
       <p> {message} </p>
 
-      {/* <ol className="text-white list-decimal">
+      <ol className="text-white list-decimal">
         {/* {pokemonFirst.name} */}
-        {/* <p className="font-bold">What you need to do</p> */}
-        {/* <li>
+        <p className="font-bold">What you need to do</p>
+        <li>
           Import hook `useLocalStorage` and use it to consume data from
           localStorage, it's fairly straightforward. Think of it as `useState`,
           in case of any problems don't hesitate to ask me for help
-        </li> */}
-        {/* <li>
+        </li>
+        <li>
           Use loaded data to display list of pokemons added to localStorage. If
           there is no pokemon in localStorage display message "There is no
           pokemons in your favourties list "
-        </li> */}
-      {/* </ol>  */}
+        </li>
+      </ol>
 
       <div className="grid grid-rows-2 grid-flow-col gap-4">
         <PokemonProfile
           name={pokemonFirst.name}
           types={pokemonFirst.types}
-          avatar={pokemonFirst.sprites.back_default}
+          avatar={pokemonFirst.avatar}
           id={pokemonFirst.id}
         />
         <PokemonProfile
           name={pokemonSecond.name}
           types={pokemonSecond.types}
-          avatar={pokemonSecond.sprites.back_default}
+          avatar={pokemonSecond.avatar}
           id={pokemonSecond.id}
         />
         <PokemonProfile
           name={pokemonThird.name}
           types={pokemonThird.types}
-          avatar={pokemonThird.sprites.back_default}
+          avatar={pokemonThird.avatar}
           id={pokemonThird.id}
         />
         <PokemonProfile
           name={pokemonFourth.name}
           types={pokemonFourth.types}
-          avatar={pokemonFourth.sprites.back_default}
+          avatar={pokemonFourth.avatar}
           id={pokemonFourth.id}
         />
         <PokemonProfile
           name={pokemonFifth.name}
           types={pokemonFifth.types}
-          avatar={pokemonFifth.sprites.back_default}
+          avatar={pokemonFifth.avatar}
           id={pokemonFifth.id}
         />
         <PokemonProfile
           name={pokemonSixth.name}
           types={pokemonSixth.types}
-          avatar={pokemonSixth.sprites.back_default}
+          avatar={pokemonSixth.avatar}
           id={pokemonSixth.id}
         />
       </div>
@@ -198,7 +152,7 @@ const PokemonProfile = ({ id, name, types, avatar }) => {
       <img
         className="w-32 h-32 rounded-full mx-auto"
         src={avatar}
-        alt=""
+        alt="One of your favourite pokemons"
         width="384"
         height="512"
       />
@@ -207,9 +161,7 @@ const PokemonProfile = ({ id, name, types, avatar }) => {
           <div className="text-cyan-600">
             #{id} {name}
           </div>
-          <div className="text-gray-500">
-            {types.map(({ type }) => type.name).join(", ")}
-          </div>
+          <div className="text-gray-500">{types}</div>
         </figcaption>
       </div>
     </figure>

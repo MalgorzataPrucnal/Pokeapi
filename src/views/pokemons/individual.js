@@ -8,6 +8,10 @@ export const Individual = (props) => {
   const [individualData, setIndividualData] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const [state, setState] = useLocalStorage("pokemons");
+  const save = () => setState([...state, individualData]);
+
+
   let url = props.match.params.index;
   // const [state, setState] = useLocalStorage(url);
   let error = false;
@@ -32,20 +36,22 @@ export const Individual = (props) => {
     return <p>Loading ...</p>;
   }
   
-
-  let save = () => {
-    window.localStorage.setItem(
-      url,
-      JSON.stringify({
-        id: url,
-        name: individualData.name,
-        avatar: individualData.sprites.front_default,
-        types: individualData.types.map(({ type }) => type.name).join(", "),
-      })
-    );
-  };
+  //////// Old solution ////////
+  // let save = () => {
+  //   window.localStorage.setItem(
+  //     url,
+  //     JSON.stringify({
+  //       id: url,
+  //       name: individualData.name,
+  //       avatar: individualData.sprites.front_default,
+  //       types: individualData.types.map(({ type }) => type.name).join(", "),
+  //     })
+  //   );
+  // };
 
   // let save = () => {setState(individualData); console.log(individualData)};
+
+  // const save = (pokemon) => setState([...state, individualData]);
 
   return (
     <Page>
