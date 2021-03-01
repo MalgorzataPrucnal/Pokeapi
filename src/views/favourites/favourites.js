@@ -37,7 +37,7 @@ const examplePokemon = {
 // };
 
 export const Favourites = () => {
-  const [state, setState] = useLocalStorage("pokemons");
+  // const [state, setState] = useLocalStorage("pokemons");
 
   let pokemonFirst = examplePokemon;
   let pokemonSecond = examplePokemon;
@@ -52,6 +52,7 @@ export const Favourites = () => {
   let message;
 
   const arrayOfPokemons = JSON.parse(window.localStorage.getItem("pokemons"));
+
   if (
     !arrayOfPokemons ||
     arrayOfPokemons === null ||
@@ -59,11 +60,9 @@ export const Favourites = () => {
   ) {
     message = "There is no pokemons on your favourites list.";
   }
-  console.log(filtered);
 
   if (arrayOfPokemons) {
     i = arrayOfPokemons.length;
-
     filtered = arrayOfPokemons.reduce((acc, current) => {
       const doubled = acc.find((item) => item.id === current.id);
       if (!doubled) {
@@ -72,11 +71,13 @@ export const Favourites = () => {
         return acc;
       }
     }, []);
-  }
 
-  if (i > 6) {
-    filtered.shift();
+    if (filtered && filtered.length > 6) {
+      filtered.shift();
+      window.localStorage.setItem("pokemons", JSON.stringify(filtered));
+    }
   }
+  console.log(filtered);
 
   //first
   if (i > 0) {
@@ -137,13 +138,13 @@ export const Favourites = () => {
 
       {/* <ol className="text-white list-decimal">
         {/* {pokemonFirst.name} */}
-        {/* <p className="font-bold">What you need to do</p> */}
-        {/* <li>
+      {/* <p className="font-bold">What you need to do</p> */}
+      {/* <li>
           Import hook `useLocalStorage` and use it to consume data from
           localStorage, it's fairly straightforward. Think of it as `useState`,
           in case of any problems don't hesitate to ask me for help
         </li> */}
-        {/* <li>
+      {/* <li>
           Use loaded data to display list of pokemons added to localStorage. If
           there is no pokemon in localStorage display message "There is no
           pokemons in your favourties list "
