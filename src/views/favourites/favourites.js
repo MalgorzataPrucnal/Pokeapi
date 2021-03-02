@@ -72,7 +72,7 @@ export const Favourites = () => {
       }
     }, []);
 
-    if (filtered && filtered.length > 6) {
+    while (filtered && filtered.length > 6) {
       filtered.shift();
       window.localStorage.setItem("pokemons", JSON.stringify(filtered));
     }
