@@ -39,6 +39,10 @@ const examplePokemon = {
 export const Favourites = () => {
   // const [state, setState] = useLocalStorage("pokemons");
 
+  // const [pokemonsNumbers, setPokemonsNumbers] = useState({examplePokemon})
+  // const pokemons = setState("pokemons");
+  // console.log("pokemons " + state);
+
   let pokemonFirst = examplePokemon;
   let pokemonSecond = examplePokemon;
   let pokemonThird = examplePokemon;

@@ -20,7 +20,7 @@ If you get stuck here refer to first pages of react-router documentation. I lite
 
 function App() {
   return (
-    <main className="App h-screen bg-red-100">
+    <main className="App h-screen bg-red-100" style= {{minHeight: "100vh", height: "100%", paddingBottom: "100px"}}>
       <div className="w-6/12 pt-4 mx-auto">
         
         <Router>

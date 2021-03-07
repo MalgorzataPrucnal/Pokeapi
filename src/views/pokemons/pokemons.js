@@ -60,13 +60,13 @@ export function Pokemons({ id, name, url }) {
       })
       .catch((error) => console.log("error"));
   };
-  
+
   return (
     <Page>
-      <Title>Pokemons list</Title>
-      <p className="text-white py-6 text-center">
+      <Title style={{paddingBottom: "20px"}}>Pokemons list</Title>
+      {/* <p className="text-white py-6 text-center">
         Here will be list of pokemons from pokeapi
-      </p>
+      </p> */}
       {loading && <p className="text-white py-6 text-center">Loading ...</p>}
       <ol className="poke-font text-white grid grid-cols-2 grid-flow-row-dense gap-1">
         {pokemons.map((pokemon, index) => (
@@ -76,10 +76,10 @@ export function Pokemons({ id, name, url }) {
               index < 10 ? "col-start-1" : "col-start-2"
             }`}
           >
-
-
             #{pokemon.url.slice(34).slice(0, -1)} -{" "}
-            <Link to={`/pokemons/${pokemon.url.slice(34).slice(0, -1)}/`}>{pokemon.name}</Link>
+            <Link to={`/pokemons/${pokemon.url.slice(34).slice(0, -1)}/`}>
+              {pokemon.name}
+            </Link>
           </li>
         ))}
       </ol>
@@ -137,9 +137,26 @@ export function Pokemons({ id, name, url }) {
           </li>
         ))}
       </ol> */}
-      <div style={{display: "flex", justifyContent: "center", gap: "30px", marginTop: "20px"}} >
-      <button className="hover:bg-light-pink-200 hover:text-light-blue-800 group flex items-center rounded-md bg-pink-100 text-light-pink-600 text-sm font-medium px-4 py-2" onClick={prev}>Previous</button>
-      <button className="hover:bg-light-pink-200 hover:text-light-blue-800 group flex items-center rounded-md bg-pink-100 text-light-pink-600 text-sm font-medium px-4 py-2" onClick={next}>Next</button>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: "30px",
+          marginTop: "20px",
+        }}
+      >
+        <button
+          className="hover:bg-light-pink-200 hover:text-light-blue-800 group flex items-center rounded-md bg-pink-100 text-light-pink-600 text-sm font-medium px-4 py-2"
+          onClick={prev}
+        >
+          Previous
+        </button>
+        <button
+          className="hover:bg-light-pink-200 hover:text-light-blue-800 group flex items-center rounded-md bg-pink-100 text-light-pink-600 text-sm font-medium px-4 py-2"
+          onClick={next}
+        >
+          Next
+        </button>
       </div>
     </Page>
   );
