@@ -4,7 +4,7 @@ POKEDEX created using Pokemon API :)
 
 PokeApi - https://pokeapi.co/api/v2/
 
-## What I have learned? 
+## What have I learned? 
 
 * routing
 * integration with API
